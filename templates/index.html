@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeIQ Lite</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <div class="logo">
+            ResumeIQ Lite
+        </div>
+
+        <ul>
+
+            <li><a href="#">Home</a></li>
+
+            <li><a href="#">About</a></li>
+
+            <li><a href="#">Contact</a></li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+
+    <section class="hero">
+
+        <h1>AI Resume Skill Gap Analyzer</h1>
+
+        <p>
+            Upload your resume, paste a job description and receive an
+            AI-powered ATS score with personalized improvement suggestions.
+        </p>
+
+    </section>
+
+
+    <!-- Main Card -->
+
+    <section class="container">
+
+        <div class="card">
+
+            <h2>Analyze Your Resume</h2>
+
+            <!-- Resume Upload -->
+
+            <label class="label">
+                Upload Resume (PDF)
+            </label>
+
+            <input
+                type="file"
+                id="resume"
+                accept=".pdf"
+            >
+
+            <br><br>
+
+            <!-- Job Description -->
+
+            <label class="label">
+                Paste Job Description
+            </label>
+
+            <textarea
+                id="jobDescription"
+                placeholder="Paste Job Description Here..."
+            ></textarea>
+
+
+            <button id="analyzeBtn">
+
+                Analyze Resume
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- Loading -->
+
+    <section id="loading" class="loading hidden">
+
+        <h2>Analyzing Resume...</h2>
+
+    </section>
+
+
+    <!-- Result -->
+
+    <section id="resultSection" class="result hidden">
+
+
+    </section>
+
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>
