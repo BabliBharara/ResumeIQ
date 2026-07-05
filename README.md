@@ -1,71 +1,116 @@
 # ResumeIQ Lite – AI Resume Skill Gap Analyzer
 
-ResumeIQ Lite is an AI-powered resume analysis web application that helps users identify skill gaps in their resumes based on their target job role. The application extracts text from an uploaded PDF resume, analyzes the content using AI, and provides structured feedback to help users improve their resume and job readiness.
+ResumeIQ Lite is an AI-powered web application that analyzes a user's resume and identifies skill gaps based on their target job role.
+
+The application accepts a resume in PDF format, extracts its text, and uses AI to analyze the candidate's existing skills, identify missing skills, and provide improvement suggestions.
+
+This project demonstrates backend API development, PDF processing, AI API integration, prompt engineering, and frontend-backend communication.
+
+---
 
 ## Features
 
-* Upload and analyze resumes in PDF format
-* Extract resume text automatically
-* AI-powered resume analysis
-* Identify existing technical and professional skills
-* Detect missing skills based on the target job role
-* Generate personalized improvement suggestions
-* Simple and responsive user interface
-* Fast API-based communication between frontend and backend
+- Upload resumes in PDF format
+- Extract text automatically from uploaded resumes
+- Analyze resume content using AI
+- Identify skills already present in the resume
+- Detect missing skills for a target job role
+- Generate personalized improvement suggestions
+- Display structured analysis results
+- Simple and user-friendly web interface
+- Backend API built using FastAPI
+
+---
 
 ## Tech Stack
 
-**Frontend**
+### Backend
 
-* HTML
-* CSS
-* JavaScript
+- Python
+- FastAPI
+- Uvicorn
 
-**Backend**
+### Frontend
 
-* Python
-* FastAPI
-* Uvicorn
+- HTML
+- CSS
+- JavaScript
 
-**Resume Processing**
+### Resume Processing
 
-* PyMuPDF (fitz)
+- PyMuPDF (`fitz`)
 
-**AI Integration**
+### AI Integration
 
-* Generative AI API for resume analysis and skill-gap identification
+- Generative AI API
+- Prompt engineering for structured resume analysis
+
+---
 
 ## Project Structure
 
 ```text
-ResumeIQ-Lite/
+ResumeIQ/
 │
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
+├── app/
+│   └── Application logic and backend modules
 │
-├── backend/
-│   ├── main.py
-│   ├── parser.py
-│   ├── ai.py
-│   └── prompts.py
+├── static/
+│   └── CSS and JavaScript files
 │
-├── requirements.txt
+├── templates/
+│   └── HTML templates
+│
+├── main.py
 ├── .gitignore
 └── README.md
 ```
 
+---
+
 ## How It Works
 
+The application follows this workflow:
+
+```text
+User Uploads Resume
+        ↓
+Frontend Sends Resume to Backend
+        ↓
+FastAPI Receives the PDF File
+        ↓
+PDF File is Read as Bytes
+        ↓
+Text is Extracted from the Resume
+        ↓
+Extracted Text is Sent for AI Analysis
+        ↓
+AI Identifies Skills and Skill Gaps
+        ↓
+Backend Returns Structured Results
+        ↓
+Results are Displayed to the User
+```
+
+### Step-by-Step Process
+
 1. The user uploads a resume in PDF format.
-2. The frontend sends the resume file and target job role to the backend API.
-3. The backend reads the uploaded PDF file as bytes.
-4. PyMuPDF extracts text from the resume.
-5. The extracted resume text and target role are sent to the AI analysis module.
-6. The AI analyzes the candidate's skills and identifies missing skills.
-7. The backend returns structured analysis results.
-8. The frontend displays the results to the user.
+
+2. The frontend sends the resume file and required input to the FastAPI backend.
+
+3. The backend reads the uploaded PDF as bytes.
+
+4. The resume parser extracts text from the PDF using PyMuPDF.
+
+5. The extracted resume text is passed to the AI analysis module.
+
+6. A structured prompt instructs the AI to analyze the resume and identify relevant skills and missing areas.
+
+7. The AI response is processed by the backend.
+
+8. The final analysis is returned to the frontend and displayed to the user.
+
+---
 
 ## Installation and Setup
 
@@ -73,8 +118,15 @@ ResumeIQ-Lite/
 
 ```bash
 git clone <your-repository-url>
-cd ResumeIQ-Lite
 ```
+
+Move into the project directory:
+
+```bash
+cd ResumeIQ
+```
+
+---
 
 ### 2. Create a Virtual Environment
 
@@ -82,94 +134,169 @@ cd ResumeIQ-Lite
 python -m venv venv
 ```
 
+---
+
 ### 3. Activate the Virtual Environment
 
-For Windows:
+#### Windows PowerShell
 
-```bash
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+#### Windows Command Prompt
+
+```cmd
 venv\Scripts\activate
 ```
 
-For macOS/Linux:
+#### macOS/Linux
 
 ```bash
 source venv/bin/activate
 ```
 
-### 4. Install Dependencies
+---
+
+### 4. Install Required Dependencies
+
+Install the dependencies required by the project.
+
+Example:
 
 ```bash
-pip install -r requirements.txt
+pip install fastapi uvicorn pymupdf python-multipart python-dotenv
 ```
+
+Also install the SDK required by the AI API used in the project.
+
+---
 
 ### 5. Configure the API Key
 
-Create a `.env` file in the backend directory and add your AI API key:
+Create a `.env` file in the appropriate project directory and add your API key.
 
-```text
+Example:
+
+```env
 API_KEY=your_api_key_here
 ```
 
-Do not upload the `.env` file or expose your API key publicly.
+The environment variable name should match the variable used in the project code.
 
-### 6. Run the Backend Server
+> Important: Never upload your `.env` file or API key to GitHub.
+
+Make sure `.env` is included in `.gitignore`.
+
+---
+
+### 6. Run the Application
+
+From the project root directory, run:
 
 ```bash
 uvicorn main:app --reload
 ```
 
-The backend server will start locally.
+After the server starts, open the local address shown in the terminal.
 
-### 7. Run the Frontend
-
-Open `index.html` using a local development server such as Live Server.
-
-## API Workflow
+The application will usually be available at:
 
 ```text
-User Uploads Resume
-        ↓
-Frontend JavaScript
-        ↓
-FastAPI Endpoint
-        ↓
-PDF Text Extraction
-        ↓
-AI Resume Analysis
-        ↓
-Structured Response
-        ↓
-Results Displayed to User
+http://127.0.0.1:8000
 ```
+
+---
+
+## API Documentation
+
+FastAPI automatically generates interactive API documentation.
+
+After starting the server, open:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+This interface allows you to view and test the available API endpoints.
+
+---
+
+## Core Concepts Used
+
+### File Upload Handling
+
+The backend receives the uploaded PDF file through a FastAPI endpoint and reads its contents as bytes.
+
+### PDF Text Extraction
+
+The PDF bytes are processed using PyMuPDF to extract readable text from the resume.
+
+### AI-Based Analysis
+
+The extracted resume text is passed to an AI model along with structured instructions. The model analyzes the resume and generates skill-gap insights.
+
+### Prompt Engineering
+
+Structured prompts are used to guide the AI model and improve the consistency and usefulness of the generated analysis.
+
+### Frontend-Backend Communication
+
+JavaScript sends user input and resume data to the FastAPI backend. The backend processes the request and returns the analysis results.
+
+---
 
 ## Learning Outcomes
 
-This project demonstrates practical knowledge of:
+Through this project, I gained practical experience with:
 
-* Building REST APIs using FastAPI
-* Handling file uploads in Python
-* Processing PDF documents
-* Connecting frontend and backend applications
-* Working with asynchronous API routes
-* Integrating generative AI APIs
-* Prompt engineering for structured AI responses
-* Error handling and API response management
+- Building REST APIs using FastAPI
+- Handling file uploads in Python
+- Working with asynchronous API routes
+- Extracting text from PDF documents
+- Integrating generative AI APIs
+- Writing structured prompts for AI models
+- Processing AI-generated responses
+- Connecting a JavaScript frontend with a Python backend
+- Organizing a full-stack Python project
+- Managing environment variables and API keys
+- Implementing basic error handling
+
+---
 
 ## Future Improvements
 
-* User authentication and profile management
-* Resume analysis history
-* Database integration
-* ATS compatibility score
-* Job description and resume comparison
-* Resume improvement recommendations
-* Cloud deployment
-* Exportable analysis reports
+The project can be extended with:
+
+- ATS resume scoring
+- Job description and resume comparison
+- User authentication
+- Resume analysis history
+- Database integration
+- Multiple resume format support
+- Resume improvement recommendations
+- Role-specific learning roadmaps
+- Downloadable analysis reports
+- Cloud deployment
+
+---
 
 ## Disclaimer
 
-ResumeIQ Lite provides AI-generated suggestions for educational and career-support purposes. The analysis should be treated as guidance and does not guarantee employment or selection in any recruitment process.
+ResumeIQ Lite provides AI-generated resume analysis and skill recommendations for educational and career-support purposes.
+
+The generated analysis should be treated as guidance and does not guarantee employment, interview selection, or recruitment outcomes.
+
+---
 
 ## Author
 
-Developed as a full-stack AI-based project demonstrating resume processing, REST API development, frontend-backend integration, and generative AI integration.
+Developed as a full-stack AI-based project to demonstrate practical skills in:
+
+- Python backend development
+- FastAPI
+- REST API development
+- PDF processing
+- AI API integration
+- Prompt engineering
+- Frontend-backend integration
